@@ -10,6 +10,7 @@ const NavBar = () => {
       .then(() => {})
       .catch((error) => console.log(error));
   };
+  console.log(user);
   const navOptions = (
     <>
       <li>
@@ -24,6 +25,7 @@ const NavBar = () => {
 
       {user ? (
         <>
+          <span>{user?.displayName}</span>
           <button onClick={handleLogOut} className="btn btn-ghost">
             LogOut
           </button>
