@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
@@ -12,6 +12,9 @@ const Login = () => {
   // const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
   const { logIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   useEffect(() => {
     loadCaptchaEnginge(6);
   });
@@ -34,6 +37,7 @@ const Login = () => {
           popup: "animate__animated animate__fadeOutUp",
         },
       });
+      navigate(from, { replace: true });
     });
   };
   const handleValidateCaptcha = (e) => {
